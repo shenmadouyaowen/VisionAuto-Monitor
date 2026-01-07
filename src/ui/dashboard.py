@@ -113,7 +113,7 @@ class Dashboard(QMainWindow):
                 img = np.array(screenshot)
                 img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
                 
-                detections = self.detector.detect(img)
+                detections = self.detector.detect(img, conf=0.3)
                 
                 # Check for Error State (Class 1) or excessive retries
                 has_error = any(d['class'] == 1 for d in detections)
@@ -138,13 +138,11 @@ class Dashboard(QMainWindow):
                     if cy < margin:
                         self.status_update.emit("Status: Target too high, scrolling up...")
                         self.executor.scroll(300)
-                        time.sleep(0.8)
-                        continue # 重新检测
+                        time.sleep(0.5)
                     elif cy > roi_h - margin:
                         self.status_update.emit("Status: Target too low, scrolling down...")
                         self.executor.scroll(-300)
-                        time.sleep(0.8)
-                        continue # 重新检测
+                        time.sleep(0.5)
 
                     # If we find a button again quickly, increment count
                     if current_time - last_click_time < 5: 
