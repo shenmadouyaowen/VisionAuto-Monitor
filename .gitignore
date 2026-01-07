@@ -29,9 +29,12 @@ ENV/
 # YOLO / Ultralytics / Training
 runs/
 dataset/
+
 *.pt
 *.onnx
-
+# 放行 models 文件夹中的生产权重，但过滤掉其他地方的 pt/onnx
+!models/*.pt
+!models/*.onnx
 # Data & Temp
 data/
 data.yaml

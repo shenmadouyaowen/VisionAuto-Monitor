@@ -2,7 +2,7 @@ import cv2
 import os
 
 def crop_icons():
-    img_path = r'C:/Users/Administrator/.gemini/antigravity/brain/00e6d05f-6904-4826-8e9a-e7a0cd0d4bf2/uploaded_image_1767314254080.png'
+    img_path = r'uploaded_image_1767314254080.png'
     img = cv2.imread(img_path)
     if img is None:
         print("Error: Could not read uploaded image.")
